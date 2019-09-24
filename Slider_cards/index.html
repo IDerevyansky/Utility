@@ -1,0 +1,238 @@
+<style>
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
+
+*{
+  transition:0.5s;
+  font-family: 'Roboto', sans-serif;
+/*   margin:0px; */
+/*   padding:0px; */
+}
+
+
+.item{
+  text-align:center;
+  line-height:300px;
+  font-size:50px;
+  display:block; 
+  width:900px;
+  height:296px;
+  border-radius:5px;
+}
+
+.sliber_box{
+/*   border:1px solid black; */
+  height:290px;
+  width:900px;
+  margin:auto;
+  margin-top:70px;
+/*   margin-left:0px; */
+
+}
+
+.btn{
+/*  border:1px solid black; */
+  z-index:999; 
+  position:absolute;
+/*   margin:auto; */
+  margin-left:350px;
+  margin-top:350px;
+  
+}
+
+.red{
+  background-color:red;
+}
+
+.green{
+  background-color:green;
+}
+
+.grey{
+  background-color:grey;
+}
+
+#back{
+  width:100px;
+  height:50px;
+  text-align:center;
+}
+
+#next{
+  width:100px;
+  height:50px;
+  text-align:center;
+}
+
+</style> 
+
+<div class="sliber_box">
+
+  <div class="item grey"><b>1</b></div>
+  <div class="item green"><b>2</b></div>
+  <div class="item red"><b>3</b></div>
+  <div class="item grey"><b>4</b></div>
+  <div class="item green"><b>5</b></div>
+  <div class="item red"><b>6</b></div>  
+  <div class="item grey"><b>7</b></div>
+  <div class="item green"><b>8</b></div>
+  <div class="item red"><b>9</b></div> 
+ 
+<div class="btn">
+  <div style="display:inline-block; cursor:pointer;" id="back"><p>back</p></div> |
+  <div style="display:inline-block; cursor:pointer;" id="next"><p>next</p></div>
+</div>
+  
+</div>
+
+
+<script>
+  
+var items, len, slider, btnForward, btnRevers, translate, scale, step=[], scale_memory=[], translate_memory=[], del, push;
+
+items      = document.getElementsByClassName('item');
+btnForward = document.getElementById('next');
+btnRevers  = document.getElementById('back'); 
+len        = items.length-1;
+translate  = 0;
+scale      = 1;
+
+
+  for (var i = 0; i < items.length; i++) {
+      step[i]=i+1;
+    }
+
+
+  for (var i = 0; i < items.length; i++) {
+
+
+      items[i].style.zIndex=step[len-i];
+      items[i].style.position='absolute';
+  
+      if (items[i].style.zIndex > items.length-3) {
+          items[i].style.opacity='1';
+          items[i].style.transform = 'translate3d(0px, '+translate+'px, 0px) scale('+scale+')';
+        } else {
+          items[i].style.opacity='0';
+          items[i].style.transform = 'translate3d(0px, 60px, 0px) scale(0.8)';
+        }
+
+      scale_memory[i]=scale.toFixed(1);
+      translate_memory[i]=translate;
+      scale-=0.1;
+      translate+=30;
+
+
+    }
+
+    scale_memory.reverse();
+    translate_memory.reverse();
+
+
+
+class Slider{
+
+  
+  
+  
+    forward(){
+
+    
+    function splice_push(q){
+      del = q.splice(0,1);
+      push = q.push(del);
+      return push;
+    }
+
+    splice_push(step);
+    splice_push(scale_memory);
+    splice_push(translate_memory);
+
+
+    console.log('----------------------------------------');
+  
+
+
+      for (var i = 0; i < items.length; i++) {
+        
+        console.log('index: '+step[len-i]+' Присвоен: '+scale_memory[len-i]+' Отступ: '+translate_memory[len-i]);
+
+        items[i].style.zIndex=step[len-i];
+
+        if (items[i].style.zIndex > items.length-3) {
+
+          items[i].style.opacity='1';
+          items[i].style.transform = 'translate3d(0px, '+translate_memory[len-i]+'px, 0px) scale('+scale_memory[len-i]+')';
+
+        } else {
+          items[i].style.opacity='0';
+          items[i].style.transform = 'translate3d(0px, 60px, 0px) scale(0.8)';
+
+        }
+        
+      }
+
+      
+    console.log('----------------------------------------');
+
+    
+   
+      
+    }
+
+
+    revers(){
+
+    function splice_unshift(q){
+      del = q.splice(len,1);
+      push = q.unshift(del);
+      return push;
+    }
+
+    splice_unshift(step);
+    splice_unshift(scale_memory);
+    splice_unshift(translate_memory);
+
+
+
+
+    console.log('----------------------------------------');
+  
+
+
+      for (var i = 0; i < items.length; i++) {
+        
+        console.log('index: '+step[len-i]+' Присвоен: '+scale_memory[len-i]+' Отступ: '+translate_memory[len-i]);
+
+        items[i].style.zIndex=step[len-i];
+          
+        if (items[i].style.zIndex > items.length-3) {
+          items[i].style.opacity='1';
+          items[i].style.transform = 'translate3d(0px, '+translate_memory[len-i]+'px, 0px) scale('+scale_memory[len-i]+')';
+        } else {
+          items[i].style.opacity='0';
+          items[i].style.transform = 'translate3d(0px, 60px, 0px) scale(0.8)';
+        }
+
+      }
+
+      
+    console.log('----------------------------------------');
+
+    
+   
+      
+    }
+
+
+
+}
+
+
+
+
+slider = new Slider();
+btnForward.onclick = () => slider.forward();
+btnRevers.onclick = () => slider.revers();
+  
+</script>

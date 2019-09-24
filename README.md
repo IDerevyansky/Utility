@@ -1,5 +1,8 @@
-# Parser 
+# Slider cards
+> Slider for site with animation the flipping cards in a circle.
+<img src = ''>
 
+# Parser 
 > Script parsing to quote of xml file cbr.ru. Get quote currency eur and usd. Parser weather with general page yandex.ru  
 
 # Automatically change password
