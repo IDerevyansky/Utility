@@ -1,6 +1,6 @@
 # Slider cards
 > Slider for site with animation the flipping cards in a circle.
-<img src = ''> 
+<img src = 'https://github.com/IDerevyansky/Utility/blob/master/Slider_cards/Slider_pre.png?raw=true'> 
 
 # Parser 
 > Script parsing to quote of xml file cbr.ru. Get quote currency eur and usd. Parser weather with general page yandex.ru  
