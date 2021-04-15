@@ -1,53 +1,45 @@
 <?php
+    move_uploaded_file($_FILES['photo']['tmp_name'], "img/".$_FILES['photo']['name']);
 
+    $im = "img/".$_FILES['photo']['name'];
+    $stamp = '../'.$_POST['frame'].'.png';
 
-function merge($thumb, $frame){
-
-    $frame = imagecreatefrompng($frame);
+    $stamp = imagecreatefrompng($stamp);
     
     switch ( $_FILES['photo']['type'] ) {
         case 'image/jpeg':
-            $thumb = imagecreatefromjpeg($thumb);
+            $im = imagecreatefromjpeg($im);
             break;
         case 'image/png':
-            $thumb = imagecreatefrompng($thumb);
+            $im = imagecreatefrompng($im);
             break;
         case 'image/gif':
-            $thumb = imagecreatefromgif($thumb);
+            $im = imagecreatefromgif($im);
             break;   
     }
 
-    $width = imagesx( $frame );
-    $height = imagesy( $frame );
+// Установка полей для штампа и получение высоты/ширины штампа
+$marge_right = 0;
+$marge_bottom = 0;
+$sx = imagesx($stamp);
+$sy = imagesy($stamp);
 
-    $img=imagecreatetruecolor( $width, $height );
+// Копирование изображения штампа на фотографию с помощью смещения края
+// и ширины фотографии для расчёта позиционирования штампа.
+imagecopy($im, $stamp, imagesx($im) - $sx - $marge_right, imagesy($im) - $sy - $marge_bottom, 0, 0, imagesx($stamp), imagesy($stamp));
 
-    imagealphablending($img, true);
+// Вывод и освобождение памяти
+header('Content-type: image/png');
+header('Content-Disposition: attachment; filename="modify_'.date('Y-m-d')."_".$_FILES['photo']['name'].'"');
 
-    $transparent = imagecolorallocatealpha( $img, 0, 0, 0, 127 );
-    imagefill( $img, 0, 0, $transparent );
-    imagecopyresampled($img,$thumb,0,0,0,0, 200, 200, imagesx( $thumb ), imagesy( $thumb ) );
-    imagecopyresampled($img,$frame,0,0,0,0, $width,$height,$width,$height);
-    imagealphablending($img, false);
-    imagesavealpha($img,true);
-
-
-    return $img;
-
-    imagedestroy($img);
-    exit;
-}
-
-$file = $_FILES['photo']['name'];
-$target = "img/".$file;
-move_uploaded_file($_FILES['photo']['tmp_name'], $target);
-$thumb = $target;
-// $frame = '../Bast_Sales.png';
-// $frame = '../H5.png';
-$frame = '../'.$_POST['frame'].'.png';
-// echo "img/".$_FILES['photo']['name'];
-
-header("Content-type: getimagesize($target)");
-imagepng( merge($thumb, $frame), NULL, 9 );
+imagepng($im);
+imagedestroy($im);
 
 unlink( "img/".$_FILES['photo']['name'] );
+    
+
+?>
+
+
+
+ 

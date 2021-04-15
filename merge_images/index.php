@@ -23,12 +23,12 @@
 
                <div class="body-section">
                
-                    <form action="/merge" method="post" enctype="multipart/form-data">
+                    <form action="/merge/index.php" method="post" enctype="multipart/form-data">
 
                         <select class="uk-select uk-border-rounded" name="frame" >
                             <option value="">Выберите шаблон</option>
                             <option value="Best_Sales">Best sales</option>
-                            <option value="h5">H5</option>
+                            <option value="H5">H5</option>
                         </select>
 
                         <div class="uk-margin">
