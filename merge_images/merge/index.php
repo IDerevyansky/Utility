@@ -35,7 +35,6 @@ function merge($thumb, $frame){
     return $img;
 
     imagedestroy($img);
-    // unlink( "img/".$_FILES['photo']['name'] );
     exit;
 }
 
@@ -43,7 +42,9 @@ $file = $_FILES['photo']['name'];
 $target = "img/".$file;
 move_uploaded_file($_FILES['photo']['tmp_name'], $target);
 $thumb = $target;
-$frame = '../Bast_Sales.png';
+// $frame = '../Bast_Sales.png';
+// $frame = '../H5.png';
+$frame = '../'.$_POST['frame'].'.png';
 // echo "img/".$_FILES['photo']['name'];
 
 header("Content-type: getimagesize($target)");
