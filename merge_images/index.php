@@ -52,7 +52,7 @@
 
         </div>
     </div>
-    <div class="uk-text-center uk-padding-small uk-position-bottom-center disc">Produced by IDerevyansky for Alpari</div>
+    <div class="uk-text-center uk-padding-small uk-position-bottom-center disc">Produced by <a href="http://www.iderevyansky.ru/" target="_blank">IDerevyansky </a> for Alpari</div>
 
     </body>
 </html>

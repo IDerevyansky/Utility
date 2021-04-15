@@ -2,6 +2,14 @@ div{
     transition: 1000ms;
 }
 
+a{
+    color: #E4E4E4; 
+}
+
+a:hover {
+    color: #E4E4E4; 
+}
+
 .body-section{
     padding:32px;
     background: #FFF;
