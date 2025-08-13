@@ -1,6 +1,8 @@
 # Analyze used vs unused files
 
 > Scans the project with support for @/ and ~/ aliases to identify all files of a specified extension (e.g., .vue). Compares them against actual imports to determine used and unused files, generates two reports with usage percentages, and respects glob-pattern ignore rules.
+> <img src = '[https://github.com/IDerevyansky/Utility/blob/master/Slider_cards/Slider_pre.png?raw=true](https://raw.githubusercontent.com/IDerevyansky/Utility/refs/heads/master/import-scanner-vue/Screenshot1.png)'>
+
 
 # Slider cards
 
