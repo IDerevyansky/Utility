@@ -2,7 +2,40 @@
 
 > Scans the project with support for @/ and ~/ aliases to identify all files of a specified extension (e.g., .vue). Compares them against actual imports to determine used and unused files, generates two reports with usage percentages, and respects glob-pattern ignore rules.
 > 
-> <img src = 'https://github.com/IDerevyansky/Utility/blob/master/import-scanner-vue/Screenshot1.png?raw=true'>
+
+## **Install Dependencies**
+
+The script uses `tsx` to run TypeScript directly without compiling.
+
+```bash
+npm install tsx typescript --save-dev
+```
+
+## **Adjust Script Settings**
+
+Open `file-reader.ts` and check:
+
+- `includeDirs` — directories to scan
+- `ignore` — glob patterns for files/folders to exclude
+- `scanExts` — file extensions to scan for imports
+- `targetExts` — which files are considered components/targets
+- `alias` — your path aliases (`@` and `~`)
+
+## **Run the Script**
+
+From the project root:
+
+```bash
+npx tsx file-reader.ts
+```
+
+If everything is fine, you’ll see output like:
+
+```bash
+USED: 45/120 (37.50%)
+UNUSED: 75/120 (62.50%)
+→ saved to used_files.txt and unused_files.txt
+```
 
 
 # Slider cards
